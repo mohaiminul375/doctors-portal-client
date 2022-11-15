@@ -4,11 +4,16 @@ import PrimaryButton from "../../Component/PrimaryButton/PrimaryButton";
 
 const HomeBanner = () => {
   return (
-    <div className="hero  px-[21px]">
+    <section className="px-[21px]"
+   >
+     {/* style={{
+    background:`url(${appointment})`
+   }} */}
+        <div className="hero">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
           src={chair}
-          className="w-1/2 rounded-lg shadow-2xl"
+          className="w-full lg:w-1/2 rounded-lg shadow-2xl"
           alt="dentist chair"
         />
         <div>
@@ -22,6 +27,7 @@ const HomeBanner = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 
