@@ -4,5 +4,6 @@
 3.tailwind css
 4.daisy UI
 5.React Day Picker
-6.
+6.React hook form
+7.Firebase Authentication
 
