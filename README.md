@@ -3,6 +3,6 @@
 2.React router dom
 3.tailwind css
 4.daisy UI
-5.
+5.React Day Picker
 6.
 
