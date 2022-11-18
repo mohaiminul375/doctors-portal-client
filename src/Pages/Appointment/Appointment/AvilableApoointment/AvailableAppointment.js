@@ -8,7 +8,7 @@ const AvailableAppointment = ({ selectedDate }) => {
   const [appointments, SetAppointments] = useState([]);
   const [treatment,setTreatment] = useState({});
   useEffect(() => {
-    fetch("Services.json")
+    fetch("http://localhost:5000/appointmentOptions")
       .then((res) => res.json())
       .then((data) => SetAppointments(data))
       .catch((error) => console.log(error));
