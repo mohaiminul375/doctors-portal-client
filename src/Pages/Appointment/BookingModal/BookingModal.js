@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import React from "react";
 
 const BookingModal = ({ treatment, setTreatment,selectedDate }) => {
-  const { name, slots } = treatment;
+  const { name:treatmentName, slots } = treatment;
   const date = format(selectedDate, "PPPP");
 
 const handleBooking = event =>{
@@ -14,7 +14,7 @@ const handleBooking = event =>{
     const phone = form.phone.value;
 const booking ={
   appointmentDate: date,
-  treatment:  name,
+  treatment: treatmentName,
   patient:name,
   slot,
   email,
@@ -37,7 +37,7 @@ const booking ={
           >
             ✕
           </label>
-          <h3 className="text-lg font-bold">{name}</h3>
+          <h3 className="text-lg font-bold">{treatmentName}</h3>
           <form onSubmit={handleBooking} className="mt-10">
             <input
               type="text"
