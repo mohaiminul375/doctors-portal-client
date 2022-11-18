@@ -14,7 +14,7 @@ const Login = () => {
   return (
     <div className="h-[800px]  flex justify-center items-center">
       <div className="w-96 shadow-2xl p-7 ">
-        <h2 className="text-4xl">LogIn</h2>
+        <h2 className="text-4xl text-center">LogIn</h2>
         <form onSubmit={handleSubmit(handleLogIn)}>
           <div className="form-control w-full max-w-xs">
             <label className="label">
@@ -53,7 +53,7 @@ const Login = () => {
         <p>
           New to doctors portal?{" "}
           <Link className="text-secondary" to="/signup">
-            please SignIn
+            please SignUp
           </Link>{" "}
         </p>
         <div className="divider">OR</div>
