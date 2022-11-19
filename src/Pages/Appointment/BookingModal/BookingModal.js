@@ -1,9 +1,11 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const BookingModal = ({ treatment, setTreatment,selectedDate }) => {
   const { name:treatmentName, slots } = treatment;
   const date = format(selectedDate, "PPPP");
+  const {user} = useContext(AuthContext);
 
 const handleBooking = event =>{
     event.preventDefault();
@@ -21,8 +23,21 @@ const booking ={
   phone,
 }
     console.log(booking)
-    setTreatment(null);
+    fetch('http://localhost:5000/bookings',{
+      method:'POST',
+      headers:{
+        'content-type': 'application/json' 
+      },
+      body: JSON.stringify(booking)
+    })
+     .then(res => res.json())
+     .then(data =>{
+      console.log(data);
+      setTreatment(null);
 
+     })
+
+    
 
 }
 
@@ -57,15 +72,19 @@ const booking ={
             </select>
             <input
               type="name"
+              defaultValue={user?.displayName}
               name="name"
               placeholder="Your Name"
               className="input input-bordered w-full"
+              readOnly
             />
             <input
               type="email"
+              defaultValue={user?.email}
               name="email"
               placeholder="type your email"
               className="input input-bordered w-full"
+              readOnly
             />
             <input
               type="phone"

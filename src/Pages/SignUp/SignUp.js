@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthProvider";
 
@@ -10,6 +10,8 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const { createUser,updateUser } = useContext(AuthContext);
+
+  const navigate = useNavigate()
 
   const handleSignUp = (data) => {
     console.log(data);
@@ -24,7 +26,7 @@ const SignUp = () => {
         }
         updateUser(userInfo)
         .then(()=>{
-
+navigate('/');
         })
         .catch(error => console.log(error))
       })

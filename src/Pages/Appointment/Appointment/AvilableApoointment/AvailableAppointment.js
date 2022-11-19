@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import BookingModal from "../../BookingModal/BookingModal";
@@ -5,14 +6,23 @@ import AvilableAppiontmentCard from "./AvilableAppointmentCard";
 // import AvilableAppiontmentCard from "./AvilableAppointmentCard";
 
 const AvailableAppointment = ({ selectedDate }) => {
-  const [appointments, SetAppointments] = useState([]);
+  // const [appointments, SetAppointments] = useState([]);
   const [treatment,setTreatment] = useState({});
-  useEffect(() => {
-    fetch("http://localhost:5000/appointmentOptions")
-      .then((res) => res.json())
-      .then((data) => SetAppointments(data))
-      .catch((error) => console.log(error));
-  }, []);
+ 
+  const {data:appointments = []} = useQuery({
+  queryKey:['appointmentOptions'],
+  queryFn:()=>  fetch("http://localhost:5000/appointmentOptions")
+  .then((res) => res.json())
+ })
+ 
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/appointmentOptions")
+  //     .then((res) => res.json())
+  //     .then((data) => SetAppointments(data))
+  //     .catch((error) => console.log(error));
+  // }, []);
+ 
+ 
   return (
     <div className="mt-20">
       <p className="text-center font-bold  text-secondary">
