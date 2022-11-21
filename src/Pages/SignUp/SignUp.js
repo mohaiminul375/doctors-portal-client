@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { json, Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthProvider";
 
@@ -26,12 +26,28 @@ const SignUp = () => {
         }
         updateUser(userInfo)
         .then(()=>{
+          saveUser(data.name, data.email)
 navigate('/');
         })
         .catch(error => console.log(error))
       })
       .catch((error) => console.log(error));
   };
+
+const saveUser =(name, email)=>{
+  const user = {name,email};
+  fetch('http://localhost:5000/users',{
+    method: 'POST',
+    headers:{
+      'content-type': 'application.json'
+    },
+    body:JSON.stringify(user)
+  })
+  .then(res =>res.json())
+  .then(data =>{
+    console.log(data)
+  })
+}
 
   return (
     <div className="h-[800px]  flex justify-center items-center">
