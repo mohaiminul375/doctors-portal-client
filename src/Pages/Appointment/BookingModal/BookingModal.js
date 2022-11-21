@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
 
-const BookingModal = ({ treatment, setTreatment,selectedDate }) => {
+const BookingModal = ({ treatment, setTreatment,selectedDate,refetch }) => {
   const { name:treatmentName, slots } = treatment;
   const date = format(selectedDate, "PPPP");
   const {user} = useContext(AuthContext);
@@ -33,8 +33,13 @@ const booking ={
      .then(res => res.json())
      .then(data =>{
       console.log(data);
+     if(data.acknowledged){
       setTreatment(null);
-
+      refetch();
+     }
+else{
+  alert('already have an appointment')
+}
      })
 
     
